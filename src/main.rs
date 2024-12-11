@@ -1,24 +1,21 @@
-enum Shape {
-    Circle(f64),//variant with associated data (radius)
-    Rectangle(f64, f64),
-    Square(f64),
-}
-
-fn calculate_area(shape: Shape) -> f64 {
-    //pattern matching 
-    match shape {
-        Shape::Circle(radius) => std::f64::consts::PI * radius * radius,
-        Shape::Rectangle(width, height) => width * height,
-        Shape::Square(side) => side * side,
+fn find_first_a(s:String)->Option<i32>{
+    for c in s.chars().enumerate(){
+        if c.1=='a'{
+            return Some(c.0 as i32);
+        }
     }
+    return None;
 }
 
 fn main() {
     println!("Hello, world!"); 
-    let circle = Shape::Circle(2.0);
-    let rectangle = Shape::Rectangle(2.0, 3.0);
-    let square = Shape::Square(2.0);
-    println!("Area of circle: {}", calculate_area(circle));
+    let indx=find_first_a(String::from("helloa"));
+    match indx{
+        Some(i)=>println!("Found at index:{}",i),
+        None=>println!("Not found")
+    } 
+
+
 }
 
   
