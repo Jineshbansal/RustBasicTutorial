@@ -1,11 +1,9 @@
-use std::fs;
+use chrono::{Local,Utc};
 fn main() {
-    println!("Hello, world!"); 
-    let contents = fs::read_to_string("./Cargod. toml");
-    match contents {
-        Ok(c) => println!("{}", c),
-        Err(e) => println!("Error: {}", e),
-    }
+    let local = Local::now();
+    let utc = Utc::now();
+    println!("Local time: {}", local);
+    println!("UTC time: {}", utc);
 }
  
   
