@@ -1,24 +1,24 @@
-struct Rect {
-    width: u32,
-    height: u32,
+enum Shape {
+    Circle(f64),//variant with associated data (radius)
+    Rectangle(f64, f64),
+    Square(f64),
 }
-impl Rect {
-    fn area(&self) -> u32 {
-        self.width * self.height
-    }
-    fn debug()->i32{
-        5
+
+fn calculate_area(shape: Shape) -> f64 {
+    //pattern matching 
+    match shape {
+        Shape::Circle(radius) => std::f64::consts::PI * radius * radius,
+        Shape::Rectangle(width, height) => width * height,
+        Shape::Square(side) => side * side,
     }
 }
 
 fn main() {
-    println!("Hello, world!");
-    let rect = Rect {
-        width: 30,
-        height: 50,
-    };
-    println!("rect is {:?}", rect.area());
-    println!("rect is {:?}", Rect::debug());
+    println!("Hello, world!"); 
+    let circle = Shape::Circle(2.0);
+    let rectangle = Shape::Rectangle(2.0, 3.0);
+    let square = Shape::Square(2.0);
+    println!("Area of circle: {}", calculate_area(circle));
 }
 
   
