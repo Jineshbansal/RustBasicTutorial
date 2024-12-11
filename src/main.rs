@@ -1,10 +1,24 @@
-fn main() {
-    println!("Hello, world!");
-    let s = String::from("JineshBansal");
-    println!("The size of the string is: {}", get_string_size(&s));
+struct Rect {
+    width: u32,
+    height: u32,
+}
+impl Rect {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+    fn debug()->i32{
+        5
+    }
 }
 
-fn get_string_size(s: &String)-> usize{
-    s.chars().count()
+fn main() {
+    println!("Hello, world!");
+    let rect = Rect {
+        width: 30,
+        height: 50,
+    };
+    println!("rect is {:?}", rect.area());
+    println!("rect is {:?}", Rect::debug());
 }
- 
+
+  
