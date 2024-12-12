@@ -15,12 +15,19 @@ impl Summary for User {
 pub fn notify(item:&impl Summary) {
     println!("Breaking news! {}", item.summarize());
 }
+/*
+Trait bound syntax 
+pub fn notify<T: Summary+Fix>(item: &T) {
+    println!("Breaking news! {}", item.summarize());
+}
+*/
 fn main() { 
     let user = User {
         name: String::from("John"),
         age: 30,
     };
     notify(&user);
+    println!("{:?}",user.name);
 
 }
 
