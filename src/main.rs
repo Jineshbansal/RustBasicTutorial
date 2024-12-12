@@ -12,17 +12,15 @@ impl Summary for User {
         format!("Name: {}, Age: {}", self.name, self.age)
     }
 } 
-
-fn main() {
-    /*
-    A trait defines the functionality particular type has and share with other types.
-    We can also define default behavior for traits.
-    */
+pub fn notify(item:&impl Summary) {
+    println!("Breaking news! {}", item.summarize());
+}
+fn main() { 
     let user = User {
         name: String::from("John"),
-        age: 25,
+        age: 30,
     };
-    println!("{}", user.summarize()); 
+    notify(&user);
 
 }
 
