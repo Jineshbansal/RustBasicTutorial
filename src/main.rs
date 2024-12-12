@@ -1,13 +1,16 @@
  
 fn main() {
-     /*
-     slice let you reference a contiguous sequence of elements in a collection rather than the whole collection.
-     A slice is a kind of reference, so it doesn’t have ownership. 
+    /*generics */
+    let ans=largest([1,3], [2,3]);
+    println!("The largest string is: {:?}", ans);
+}
 
-    */
-    //slice can also be applied to other collection like vectors/arrays  
-    let string_literal = "Hello, world!";// literal is also an &str type but it points directly to the address of the string in the binary
-
+fn largest<T: std::cmp::PartialOrd>(a:T,b:T)->T{
+    if a>b{
+        a
+    }else{
+        b
+    }
 }
 
    
