@@ -1,9 +1,9 @@
-use chrono::{Local,Utc};
+
 fn main() {
-    let local = Local::now();
-    let utc = Utc::now();
-    println!("Local time: {}", local);
-    println!("UTC time: {}", utc);
+    let mut s1=String::from("hello");
+    let mut s2=&s1; 
+    // let s3=&mut s1;
+    // println!("{}",s);
 }
  
-  
+   
