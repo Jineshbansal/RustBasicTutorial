@@ -16,8 +16,9 @@ fn main() {
         });
     }
     let mut ans=0;
-    for _ in 0..10 {
-        ans+=rc.recv().unwrap();
+    drop(tx);
+    for val in rc {
+        ans+=val;
     }
     let mut sum:u64=0;
     for i in 1..10000000 { 
