@@ -1,33 +1,26 @@
-pub trait Summary {
-    fn summarize(&self) -> String;
+// Shorter lifetime is what the return type will have
+
+
+fn longer_str<'a>(s1:&'a str, s2:&'a str) -> &'a str {
+    if s1.len() > s2.len() {
+        s1
+    } else {
+        s2
+    } 
 }
 
-struct User{
-    name: String,
-    age: u32,
-}
 
-impl Summary for User { 
-    fn summarize(&self) -> String {
-        format!("Name: {}, Age: {}", self.name, self.age)
-    }
-} 
-pub fn notify(item:&impl Summary) {
-    println!("Breaking news! {}", item.summarize());
-}
-/*
-Trait bound syntax 
-pub fn notify<T: Summary+Fix>(item: &T) {
-    println!("Breaking news! {}", item.summarize());
-}
-*/
 fn main() { 
-    let user = User {
-        name: String::from("John"),
-        age: 30,
-    };
-    notify(&user);
-    println!("{:?}",user.name);
+    let longest_str;
+    let s1 = String::from("small");
+    {
+        let s2 = String::from("longer");
+        longest_str = longer_str(&s1, &s2);
+    }
+    println!("The longest string is: {}", longest_str); 
+    
+    
+
 
 }
 
