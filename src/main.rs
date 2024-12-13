@@ -1,22 +1,30 @@
 use std::thread;
 
 fn main() {     
-    let (tx, rx) = std::sync::mpsc::channel();   
-    let handle = thread::spawn(move || { 
-        for i in 0..10000{
-            println!("{}",i);
-        }        
-        tx.send("Hello from the thread!").unwrap();     
-    });
-    println!("{}", rx.recv().unwrap());
-    /* 
-    you should not use unwrap as it will panic if the result is an error. 
-    */
-    let value=rx.recv();
-    match value{
-        Ok(value)=>println!("{}",value),
-        Err(e)=>println!("Error: {}",e),
+    let (tx,rc)= std::sync::mpsc::channel();
+    for i in 0..10 {
+        let producer=tx.clone();
+        thread::spawn(move || {
+            let mut ans:u64=0;
+            for j in 0..1000000 {
+                ans+=1000000*i+j;
+                if i==9 && j==999999 {
+                    println!("Thread {} finished",1000000*i+j);
+                }
+            }
+            producer.send(ans).unwrap();
+        });
     }
+    let mut ans=0;
+    for _ in 0..10 {
+        ans+=rc.recv().unwrap();
+    }
+    let mut sum:u64=0;
+    for i in 1..10000000 { 
+        sum+=i;
+    }
+    println!("{}",ans);
+    println!("{}",sum);
 
 } 
 
